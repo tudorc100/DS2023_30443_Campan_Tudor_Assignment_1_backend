@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+
+  tomcat-db-api:
+    image: backend
+    ports:
+      - 8088:8088
+    networks:
+      - DS_SQL_SPRING
+    depends_on:
+      - "mysql"
+#    network_mode: host
+  #    ports:
+  #      - "8088:8088"
+    environment:
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/assignds?serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: assignds
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+    container_name: mysqldb
+    ports:
+      - 3306:3306
+    networks:
+      - DS_SQL_SPRING
+    command: --init-file /data/application/dumpfile.sql
+    volumes:
+      - ./init.sql:/data/application/dumpfile.sql
+
+  frontend:
+    image: frontend
+  #  network_mode: host
+ #   depends_on:
+ #     - "tomcat-db-api"
+    ports:
+        - "8080:8080"
+    networks:
+      - DS_SQL_SPRING
+
+networks:
+  DS_SQL_SPRING:
+    driver: bridge

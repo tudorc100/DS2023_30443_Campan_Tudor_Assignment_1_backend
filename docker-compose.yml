@@ -10,19 +10,19 @@ services:
       - DS_SQL_SPRING
     depends_on:
       - "mysql"
-#    network_mode: host
+#    network_mode: hosts
   #    ports:
   #      - "8088:8088"
     environment:
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_PASSWORD=root1234
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/assignds?serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
   mysql:
     image: mysql
     environment:
       MYSQL_DATABASE: assignds
       MYSQL_USERNAME: root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root1234
     container_name: mysqldb
     ports:
       - 3306:3306

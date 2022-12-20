@@ -36,6 +36,14 @@ dependencies {
     implementation group: 'com.opencsv', name: 'opencsv', version: '3.7'
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.webjars:webjars-locator")
+    compile("org.webjars:sockjs-client:1.0.2")
+    compile("org.webjars:stomp-websocket:2.3.3")
+    compile("org.webjars:bootstrap:3.3.7")
+    compile 'com.rabbitmq:amqp-client:5.16.0'
+    implementation 'org.json:json:20090211'
 }
 
 test {

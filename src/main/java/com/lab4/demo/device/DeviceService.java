@@ -1,9 +1,13 @@
 package com.lab4.demo.device;
 
+import com.lab4.demo.consumption.Consumption;
+import com.lab4.demo.consumption.ConsumptionRepository;
 import com.lab4.demo.device.model.Device;
 import com.lab4.demo.device.model.dto.DeviceDTO;
 import com.lab4.demo.user.UserService;
+import com.lab4.demo.websocket.WebSocketController;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -16,6 +20,12 @@ public class DeviceService {
     private final UserService userService;
     private final DeviceRepository deviceRepository;
     private final DeviceMapper deviceMapper;
+
+    @Autowired
+    private ConsumptionRepository consumptionRepository;
+
+    @Autowired
+    private WebSocketController webSocketController;
 
     private Device findById(Long id) {
         return deviceRepository.findById(id)
@@ -62,5 +72,22 @@ public class DeviceService {
         return deviceRepository.findAllByUserIdEquals(userId).stream()
                 .map(deviceMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+
+
+    public void addConsumption(Consumption consumption) throws InterruptedException {
+        Consumption cons = consumptionRepository.save(consumption);
+        Long deviceId = cons.getDeviceId();
+
+        Device device = deviceRepository.findById(deviceId).get();
+
+        System.out.println("max is " + device.getConsumption() + " current " + cons.getEnergy());
+        if(cons.getEnergy() > device.getConsumption()){
+            System.out.println("SENT NOTIFICATION");
+            webSocketController.sendNotification(String.valueOf(device.getUserId()), String.valueOf(consumption.getEnergy()), String.valueOf(deviceId), String.valueOf(device.getConsumption()));
+        }
+
+
     }
 }

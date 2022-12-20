@@ -2,6 +2,7 @@ package com.lab4.demo;
 
 import com.lab4.demo.device.DeviceRepository;
 import com.lab4.demo.device.model.Device;
+import com.lab4.demo.listener.QueueConsumer;
 import com.lab4.demo.security.AuthService;
 import com.lab4.demo.security.dto.SignupRequest;
 import com.lab4.demo.user.RoleRepository;
@@ -31,6 +32,10 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
 
     @Value("false")
     private Boolean bootstrap;
+
+    @Value("false")
+    private Boolean read;
+
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -77,6 +82,15 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
                     .consumption(700)
                     .userId(userRepository.findAll().get(1).getId())
                     .build());
+        }
+        if (read)
+        {
+            QueueConsumer q=new QueueConsumer();
+            try {
+                q.readMessages();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

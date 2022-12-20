@@ -1,6 +1,7 @@
 package com.lab4.demo;
 
 import com.lab4.demo.device.DeviceRepository;
+import com.lab4.demo.device.DeviceService;
 import com.lab4.demo.device.model.Device;
 import com.lab4.demo.listener.QueueConsumer;
 import com.lab4.demo.security.AuthService;
@@ -30,10 +31,14 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
 
     private final DeviceRepository deviceRepository;
 
+    private final DeviceService deviceService;
+
+
+
     @Value("false")
     private Boolean bootstrap;
 
-    @Value("false")
+    @Value("true")
     private Boolean read;
 
 
@@ -50,16 +55,6 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
                                 .build()
                 );
             }
-            deviceRepository.save(Device.builder().description("Tilivizor")
-                            .address("Marinescu")
-                            .consumption(700)
-                            .userId(10L)
-                    .build());
-            deviceRepository.save(Device.builder().description("Tilivizor Doi")
-                    .address("Marinescu Doi")
-                    .consumption(700)
-                    .userId(10L)
-                    .build());
             authService.register(SignupRequest.builder()
                     .email("tudor@gmail.com")
                     .username("tudor")
@@ -72,12 +67,13 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
                     .password("WooHoo1!")
                     .roles(Set.of("CUSTOMER"))
                     .build());
-            deviceRepository.save(Device.builder().description("Tilivizor")
+            deviceRepository.deleteAll();
+            deviceRepository.save(Device.builder().id(10L).description("Tilivizor")
                     .address("Marinescu")
                     .consumption(700)
                     .userId(userRepository.findAll().get(1).getId())
                     .build());
-            deviceRepository.save(Device.builder().description("Tilivizor Doi")
+            deviceRepository.save(Device.builder().id(11L).description("Tilivizor Doi")
                     .address("Marinescu Doi")
                     .consumption(700)
                     .userId(userRepository.findAll().get(1).getId())
@@ -85,7 +81,7 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
         }
         if (read)
         {
-            QueueConsumer q=new QueueConsumer();
+            QueueConsumer q=new QueueConsumer(deviceService);
             try {
                 q.readMessages();
             } catch (Exception e) {

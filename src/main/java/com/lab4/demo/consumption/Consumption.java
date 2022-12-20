@@ -18,7 +18,7 @@ public class Consumption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 512, nullable = false)
+    @Column(length = 512, nullable = false,columnDefinition = "TIMESTAMP (6)")
     private Timestamp timestamp;
 
     @Column(length = 512, nullable = false)

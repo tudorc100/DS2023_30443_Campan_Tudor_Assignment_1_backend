@@ -37,13 +37,11 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
-    compile("org.springframework.boot:spring-boot-starter-websocket")
-    compile("org.webjars:webjars-locator")
-    compile("org.webjars:sockjs-client:1.0.2")
-    compile("org.webjars:stomp-websocket:2.3.3")
-    compile("org.webjars:bootstrap:3.3.7")
-    compile 'com.rabbitmq:amqp-client:5.16.0'
-    implementation 'org.json:json:20090211'
+    implementation group: 'com.rabbitmq', name: 'amqp-client', version: '5.16.0'
+    implementation group: 'org.json', name: 'json', version: '20090211'
+    /*implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'*/
+    implementation group: 'org.springframework', name: 'spring-websocket', version: '5.3.18'
+    implementation group: 'org.springframework', name: 'spring-messaging', version: '5.3.24'
 }
 
 test {

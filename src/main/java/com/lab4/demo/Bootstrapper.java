@@ -67,6 +67,12 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
                     .password("WooHoo1!")
                     .roles(Set.of("CUSTOMER"))
                     .build());
+            authService.register(SignupRequest.builder()
+                    .email("tudor11@gmail.com")
+                    .username("tudor11")
+                    .password("WooHoo1!")
+                    .roles(Set.of("CUSTOMER"))
+                    .build());
             deviceRepository.deleteAll();
             deviceRepository.save(Device.builder().id(10L).description("Tilivizor")
                     .address("Marinescu")
@@ -76,7 +82,7 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
             deviceRepository.save(Device.builder().id(11L).description("Tilivizor Doi")
                     .address("Marinescu Doi")
                     .consumption(700)
-                    .userId(userRepository.findAll().get(1).getId())
+                    .userId(userRepository.findAll().get(2).getId())
                     .build());
         }
         if (read)

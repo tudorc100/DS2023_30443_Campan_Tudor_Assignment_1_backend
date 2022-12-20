@@ -48,9 +48,9 @@ public class QueueConsumer {
             System.out.println(" [x] Received '" + message + "'");
 
             try {
-                Thread.sleep(4000);
+                Thread.sleep(400);
                 addEnergy(message);
-                Thread.sleep(4000);
+                Thread.sleep(400);
             } catch (InterruptedException | JSONException e) {
                 throw new RuntimeException(e);
             }

@@ -1,6 +1,6 @@
 package com.lab4.demo.security;
 
-import com.lab4.demo.user.dto.UserDetailsImpl;
+import com.lab4.demo.dtos.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;

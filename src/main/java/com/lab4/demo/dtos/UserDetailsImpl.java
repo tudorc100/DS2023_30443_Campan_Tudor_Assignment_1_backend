@@ -1,7 +1,7 @@
-package com.lab4.demo.user.dto;
+package com.lab4.demo.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lab4.demo.user.model.User;
+import com.lab4.demo.model.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

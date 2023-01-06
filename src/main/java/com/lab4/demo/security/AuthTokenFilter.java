@@ -1,6 +1,6 @@
 package com.lab4.demo.security;
 
-import com.lab4.demo.user.UserDetailsServiceImpl;
+import com.lab4.demo.model.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

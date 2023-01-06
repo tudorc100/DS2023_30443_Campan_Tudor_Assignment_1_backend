@@ -4,7 +4,7 @@ import com.lab4.demo.security.dto.JwtResponse;
 import com.lab4.demo.security.dto.LoginRequest;
 import com.lab4.demo.security.dto.MessageResponse;
 import com.lab4.demo.security.dto.SignupRequest;
-import com.lab4.demo.user.dto.UserDetailsImpl;
+import com.lab4.demo.dtos.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,4 +1,4 @@
-package com.lab4.demo.user.dto;
+package com.lab4.demo.dtos;
 import lombok.*;
 
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.lab4.demo.device.model.dto;
+package com.lab4.demo.dtos;
 
 import lombok.*;
 

@@ -1,7 +1,7 @@
-package com.lab4.demo.user.mapper;
+package com.lab4.demo.model.mapper;
 
-import com.lab4.demo.user.dto.UserDTO;
-import com.lab4.demo.user.model.User;
+import com.lab4.demo.dtos.UserDTO;
+import com.lab4.demo.model.User;
 import org.mapstruct.*;
 
 import java.util.stream.Collectors;

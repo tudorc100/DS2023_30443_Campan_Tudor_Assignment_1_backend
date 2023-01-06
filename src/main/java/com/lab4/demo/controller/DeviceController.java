@@ -1,6 +1,7 @@
-package com.lab4.demo.device;
+package com.lab4.demo.controller;
 
-import com.lab4.demo.device.model.dto.DeviceDTO;
+import com.lab4.demo.service.DeviceService;
+import com.lab4.demo.dtos.DeviceDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

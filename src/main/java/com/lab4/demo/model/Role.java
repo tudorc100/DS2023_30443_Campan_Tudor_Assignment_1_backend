@@ -1,4 +1,4 @@
-package com.lab4.demo.user.model;
+package com.lab4.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

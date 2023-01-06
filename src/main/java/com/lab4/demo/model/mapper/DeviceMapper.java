@@ -1,7 +1,7 @@
-package com.lab4.demo.device;
+package com.lab4.demo.model.mapper;
 
-import com.lab4.demo.device.model.Device;
-import com.lab4.demo.device.model.dto.DeviceDTO;
+import com.lab4.demo.model.Device;
+import com.lab4.demo.dtos.DeviceDTO;
 import org.mapstruct.Mapper;
 
     @Mapper(componentModel = "spring")

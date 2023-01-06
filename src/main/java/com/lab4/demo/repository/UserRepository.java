@@ -1,12 +1,11 @@
-package com.lab4.demo.user;
+package com.lab4.demo.repository;
 
-import com.lab4.demo.user.model.Role;
-import com.lab4.demo.user.model.User;
+import com.lab4.demo.model.Role;
+import com.lab4.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

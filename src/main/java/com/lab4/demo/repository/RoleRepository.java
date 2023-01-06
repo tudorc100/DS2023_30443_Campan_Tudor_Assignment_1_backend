@@ -1,7 +1,7 @@
-package com.lab4.demo.user;
+package com.lab4.demo.repository;
 
-import com.lab4.demo.user.model.ERole;
-import com.lab4.demo.user.model.Role;
+import com.lab4.demo.model.ERole;
+import com.lab4.demo.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

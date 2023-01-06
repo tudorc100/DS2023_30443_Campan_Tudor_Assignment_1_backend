@@ -1,12 +1,14 @@
-package com.lab4.demo.user;
+package com.lab4.demo.service;
 
+import com.lab4.demo.repository.RoleRepository;
+import com.lab4.demo.repository.UserRepository;
 import com.lab4.demo.security.AuthService;
 import com.lab4.demo.security.dto.SignupRequest;
-import com.lab4.demo.user.dto.UserDTO;
-import com.lab4.demo.user.mapper.UserMapper;
-import com.lab4.demo.user.model.ERole;
-import com.lab4.demo.user.model.Role;
-import com.lab4.demo.user.model.User;
+import com.lab4.demo.dtos.UserDTO;
+import com.lab4.demo.model.mapper.UserMapper;
+import com.lab4.demo.model.ERole;
+import com.lab4.demo.model.Role;
+import com.lab4.demo.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

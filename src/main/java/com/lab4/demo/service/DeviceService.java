@@ -1,11 +1,12 @@
-package com.lab4.demo.device;
+package com.lab4.demo.service;
 
-import com.lab4.demo.consumption.Consumption;
-import com.lab4.demo.consumption.ConsumptionRepository;
-import com.lab4.demo.device.model.Device;
-import com.lab4.demo.device.model.dto.DeviceDTO;
-import com.lab4.demo.user.UserService;
-import com.lab4.demo.websocket.WebSocketController;
+import com.lab4.demo.model.Consumption;
+import com.lab4.demo.model.mapper.DeviceMapper;
+import com.lab4.demo.repository.ConsumptionRepository;
+import com.lab4.demo.model.Device;
+import com.lab4.demo.dtos.DeviceDTO;
+import com.lab4.demo.repository.DeviceRepository;
+import com.lab4.demo.websocket.WebSocketSender;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class DeviceService {
     private ConsumptionRepository consumptionRepository;
 
     @Autowired
-    private WebSocketController webSocketController;
+    private WebSocketSender webSocketSender;
 
     private Device findById(Long id) {
         return deviceRepository.findById(id)
@@ -85,7 +86,7 @@ public class DeviceService {
         System.out.println("max is " + device.getConsumption() + " current " + cons.getEnergy());
         if(cons.getEnergy() > device.getConsumption()){
             System.out.println("SENT NOTIFICATION");
-            webSocketController.sendNotification(String.valueOf(device.getUserId()), String.valueOf(consumption.getEnergy()), String.valueOf(deviceId), String.valueOf(device.getConsumption()));
+            webSocketSender.sendNotification(String.valueOf(device.getUserId()), String.valueOf(consumption.getEnergy()), String.valueOf(deviceId), String.valueOf(device.getConsumption()));
         }
 
 

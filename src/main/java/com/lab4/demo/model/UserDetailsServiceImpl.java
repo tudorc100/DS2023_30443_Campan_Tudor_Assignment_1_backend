@@ -1,7 +1,7 @@
-package com.lab4.demo.user;
+package com.lab4.demo.model;
 
-import com.lab4.demo.user.dto.UserDetailsImpl;
-import com.lab4.demo.user.model.User;
+import com.lab4.demo.dtos.UserDetailsImpl;
+import com.lab4.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

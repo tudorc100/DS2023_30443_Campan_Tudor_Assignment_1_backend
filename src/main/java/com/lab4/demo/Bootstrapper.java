@@ -35,10 +35,10 @@ public class Bootstrapper implements ApplicationListener<ApplicationReadyEvent> 
 
 
 
-    @Value("true")
+    @Value("false")
     private Boolean bootstrap;
 
-    @Value("true")
+    @Value("false")
     private Boolean read;
 
 

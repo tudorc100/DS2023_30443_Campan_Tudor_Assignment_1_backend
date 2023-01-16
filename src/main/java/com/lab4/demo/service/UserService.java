@@ -1,5 +1,6 @@
 package com.lab4.demo.service;
 
+import com.lab4.demo.model.Message;
 import com.lab4.demo.repository.RoleRepository;
 import com.lab4.demo.repository.UserRepository;
 import com.lab4.demo.security.AuthService;
@@ -9,6 +10,7 @@ import com.lab4.demo.model.mapper.UserMapper;
 import com.lab4.demo.model.ERole;
 import com.lab4.demo.model.Role;
 import com.lab4.demo.model.User;
+import com.lab4.demo.websocket.WebSocketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,8 @@ public class UserService {
     private final AuthService authService;
 
     private final RoleRepository roleRepository;
+
+    private final WebSocketService webSocketService;
 
     public List<UserDTO> findAll() {
         Optional<Role> defaultRole = roleRepository.findByName(ERole.CUSTOMER);
@@ -66,5 +70,14 @@ public class UserService {
     public Boolean existsById(Long id)
     {
         return userRepository.existsById(id);
+    }
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("User not found" + username));
+    }
+    public void sendMessage(String username, Message message) throws Exception {
+        User userToSendTo=findByUsername(username);
+        webSocketService.notification(message, userToSendTo.getId());
+
     }
 }

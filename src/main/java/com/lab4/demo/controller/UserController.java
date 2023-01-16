@@ -1,6 +1,9 @@
 package com.lab4.demo.controller;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.lab4.demo.UrlMapping;
 import com.lab4.demo.dtos.UserDTO;
+import com.lab4.demo.model.Message;
 import com.lab4.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,5 +36,11 @@ public class UserController {
     @PatchMapping(USERS_ID_PART)
     public UserDTO edit(@PathVariable Long id, @RequestBody UserDTO user) {
         return userService.edit(id, user);
+    }
+    @CrossOrigin
+    @PostMapping(UrlMapping.TOUSERNAME)
+    @JsonRawValue
+    public void sendMessage(@PathVariable String toUsername, @RequestBody Message message) throws Exception {
+        userService.sendMessage(toUsername, message);
     }
 }

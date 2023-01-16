@@ -13,4 +13,5 @@ public class WebSocketSender {
         Thread.sleep(500);
         webSocketService.processMsg(userId,cons, id, maxCons);
     }
+
 }

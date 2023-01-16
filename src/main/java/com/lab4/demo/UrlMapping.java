@@ -12,5 +12,6 @@ public class UrlMapping {
     public static final String USER = API_PATH + "/users";
     public static final String USERS_ID_PART = "/{id}";
 
+    public static final String TOUSERNAME = "/{toUsername}";
 
 }
